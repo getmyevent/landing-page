@@ -35,14 +35,7 @@ export default function Team() {
     <section id="team" className="py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#111827]/70">
-              Founders &amp; Leadership
-            </span>
-          </div>
-
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] leading-[1.12]">
             The team behind{" "}
             <span className="text-[#EB3B38]">GetMyEvent.</span>
@@ -55,7 +48,7 @@ export default function Team() {
         </div>
 
         {/* Team Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TEAM.map((member, idx) => (
             <motion.div
               key={member.name}
@@ -67,33 +60,28 @@ export default function Team() {
                 delay: shouldReduceMotion ? 0 : idx * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="p-8 rounded-3xl bg-white border border-[#EAE7E0] shadow-[0_4px_20px_-2px_rgba(17,24,39,0.03)] hover:shadow-[0_12px_36px_-4px_rgba(17,24,39,0.08)] transition-all duration-300 flex flex-col justify-between"
+              className="p-6 sm:p-7 rounded-2xl bg-white border border-[#EAE7E0] shadow-[0_4px_20px_-2px_rgba(17,24,39,0.03)] hover:shadow-[0_10px_30px_-4px_rgba(17,24,39,0.08)] transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Monogram Avatar & Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#111827] to-[#1E293B] text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#111827] to-[#1E293B] text-white flex items-center justify-center font-bold text-base shadow-sm">
                     {member.initials}
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#EAE7E0] text-xs font-semibold text-[#EB3B38]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#EB3B38]">
                     {member.badge}
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">
+                <h3 className="text-lg sm:text-xl font-bold text-[#111827] tracking-tight">
                   {member.name}
                 </h3>
-                <div className="text-sm font-semibold text-[#EB3B38] mt-1 mb-3">
+                <div className="text-xs sm:text-sm font-semibold text-[#EB3B38] mt-0.5 mb-2.5">
                   {member.role}
                 </div>
-                <p className="text-sm text-[#111827]/70 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#111827]/70 leading-relaxed">
                   {member.focus}
                 </p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-[#EAE7E0]/60 flex items-center justify-between text-xs text-[#111827]/40">
-                <span>GetMyEvent Leadership</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
               </div>
             </motion.div>
           ))}

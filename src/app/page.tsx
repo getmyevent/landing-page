@@ -4,7 +4,6 @@ import TrustedMarquee from "@/components/TrustedMarquee";
 import FeatureGrid from "@/components/FeatureGrid";
 import AudienceToggle from "@/components/AudienceToggle";
 import CaseStudy from "@/components/CaseStudy";
-import HowItWorks from "@/components/HowItWorks";
 import Team from "@/components/Team";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -30,16 +29,13 @@ export default function Home() {
       {/* 6. Live Case Study: MP Semiconductor Summit 2026 */}
       <CaseStudy />
 
-      {/* 7. How It Works (3 Steps) */}
-      <HowItWorks />
-
-      {/* 8. Team & Leadership */}
+      {/* 7. Team & Leadership */}
       <Team />
 
-      {/* 9. Final CTA & Lead Form */}
+      {/* 8. Final CTA & Lead Form */}
       <ContactSection />
 
-      {/* 10. Footer */}
+      {/* 9. Footer */}
       <Footer />
     </div>
   );

@@ -107,13 +107,6 @@ export default function ContactSection() {
           {/* Left Column: Copy & Value Proposition */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#111827]/70">
-                  Host With Us
-                </span>
-              </div>
-
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] leading-[1.12]">
                 Have an event in mind?{" "}
                 <span className="text-[#EB3B38] inline-flex items-center">

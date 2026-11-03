@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Calendar, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import PhoneMockup from "./PhoneMockup";
 
@@ -25,14 +25,6 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            {/* Tag Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#EAE7E0] shadow-[0_2px_8px_rgba(17,24,39,0.04)] mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#EB3B38] animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-semibold tracking-wider text-[#111827]/70 uppercase">
-                The Digital Event Companion
-              </span>
-            </div>
-
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-bold text-[#111827] tracking-[-0.035em] leading-[1.08] max-w-2xl">
               Bring every part of your event{" "}
@@ -75,7 +67,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Phone Mockup with subtle floating badges */}
+          {/* Right Column: Phone Mockup */}
           <div className="lg:col-span-5 relative flex justify-center items-center">
             {/* Parallax / Floating Phone Wrapper */}
             <motion.div
@@ -94,62 +86,10 @@ export default function Hero() {
               className="relative z-10"
             >
               <PhoneMockup
-                imageSrc="/images/app-screen-login.png"
+                imageSrc="/images/screen-hero-login-v3.png"
                 imageAlt="GetMyEvent MP Semiconductor Summit 2026 App Interface"
                 className="scale-95 sm:scale-100"
               />
-
-              {/* Floating Badge 1: Top Left - Agenda at a glance */}
-              <motion.div
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        y: [4, -4, 4],
-                      }
-                }
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-                className="hidden sm:flex absolute -left-10 md:-left-14 top-20 z-20 items-center gap-2.5 p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-[#EAE7E0] shadow-[0_12px_28px_rgba(17,24,39,0.08)] pointer-events-none"
-              >
-                <div className="w-8 h-8 rounded-xl bg-[#EB3B38]/10 flex items-center justify-center text-[#EB3B38]">
-                  <Calendar className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-[#111827]">Agenda at a glance</div>
-                  <div className="text-[10px] text-[#111827]/50">Sessions, times & venues</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 2: Bottom Right - People & Partners */}
-              <motion.div
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        y: [-5, 5, -5],
-                      }
-                }
-                transition={{
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="hidden sm:flex absolute -right-6 md:-right-10 bottom-24 z-20 items-center gap-2.5 p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-[#EAE7E0] shadow-[0_12px_28px_rgba(17,24,39,0.08)] pointer-events-none"
-              >
-                <div className="w-8 h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600">
-                  <Users className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-[#111827]">People & partners</div>
-                  <div className="text-[10px] text-[#111827]/50">All in one event space</div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
         </div>

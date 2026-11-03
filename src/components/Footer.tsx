@@ -87,7 +87,7 @@ export default function Footer() {
                 Mentored under the leadership of Dr. Pratosh Bansal, Director,
                 Institute of Engineering &amp; Technology (IET DAVV), Indore.
               </p>
-              <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#111827]/80 bg-white px-3 py-1.5 rounded-full border border-[#EAE7E0]">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#111827]/70">
                 <Globe className="w-3.5 h-3.5 text-[#EB3B38]" />
                 <span>Domain: getmyevent.in</span>
               </div>

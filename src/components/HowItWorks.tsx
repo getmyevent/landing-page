@@ -53,9 +53,9 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#111827]/70">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#EB3B38]" />
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#111827]/60">
               Simple 3-Step Process
             </span>
           </div>

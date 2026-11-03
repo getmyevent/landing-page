@@ -95,19 +95,19 @@ export default function ProofStrip() {
         {/* Zero Friction Proof Banner & Capacity Note */}
         <div className="mt-10 pt-8 border-t border-[#EAE7E0]/70 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           {/* Zero downloads, passwords, OTPs */}
-          <div className="inline-flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-3 text-xs sm:text-sm font-semibold text-[#111827]">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-[#111827]/80">
+            <span className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
               0 downloads
             </span>
             <span className="text-[#111827]/30">•</span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
               0 passwords
             </span>
             <span className="text-[#111827]/30">•</span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
               0 OTPs
             </span>
           </div>

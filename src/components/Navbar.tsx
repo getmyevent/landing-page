@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { label: "Platform", href: "#features" },
   { label: "Experience", href: "#experiences" },
   { label: "Case Study", href: "#casestudy" },
-  { label: "How it works", href: "#how-it-works" },
   { label: "Team", href: "#team" },
 ];
 

@@ -70,7 +70,7 @@ const AUDIENCES: AudienceContent[] = [
         icon: Vote,
       },
     ],
-    imageSrc: "/images/app-screen-delegate.png",
+    imageSrc: "/images/screen-delegate-v3.png",
     imageAlt: "GetMyEvent Delegate App Screen showing MPSS26 badge and agenda",
     isDashboard: false,
   },
@@ -103,7 +103,7 @@ const AUDIENCES: AudienceContent[] = [
         icon: FileSpreadsheet,
       },
     ],
-    imageSrc: "/images/app-screen-exhibitor.png",
+    imageSrc: "/images/screen-exhibitor-v3.png",
     imageAlt: "GetMyEvent Exhibitor Lead Capture interface showing Truechip Solutions",
     isDashboard: false,
   },
@@ -154,13 +154,6 @@ export default function AudienceToggle() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#EAE7E0] shadow-sm mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EB3B38]" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#111827]/70">
-              Tailored Experiences
-            </span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] leading-[1.15]">
             Designed around the people who{" "}
             <span className="text-[#EB3B38]">make events happen.</span>
@@ -172,7 +165,7 @@ export default function AudienceToggle() {
             mobile-friendly space.
           </p>
 
-          {/* 3-Way Pill Switcher */}
+          {/* 3-Way Switcher: High Contrast Active Tab */}
           <div className="mt-8 inline-flex p-1.5 rounded-full bg-white border border-[#EAE7E0] shadow-sm">
             {AUDIENCES.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -181,19 +174,13 @@ export default function AudienceToggle() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative px-4 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 min-h-[44px] flex items-center justify-center ${
+                  className={`px-4 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 min-h-[44px] flex items-center justify-center cursor-pointer ${
                     isActive
-                      ? "text-white shadow-sm"
-                      : "text-[#111827]/70 hover:text-[#111827]"
+                      ? "bg-[#111827] text-white shadow-md font-bold"
+                      : "text-[#111827]/70 hover:text-[#111827] hover:bg-black/5"
                   }`}
+                  aria-pressed={isActive}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activePill"
-                      className="absolute inset-0 bg-[#111827] rounded-full -z-10"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
                   <span>{tab.label}</span>
                 </button>
               );
@@ -214,10 +201,9 @@ export default function AudienceToggle() {
             >
               {/* Left Column: Bullets & Explanations */}
               <div className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#EAE7E0] w-fit mb-4">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#EB3B38]">
-                    {currentAudience.badge}
-                  </span>
+                {/* Clean Eyebrow (No Box) */}
+                <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#EB3B38] mb-3">
+                  {currentAudience.badge}
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#111827]">
