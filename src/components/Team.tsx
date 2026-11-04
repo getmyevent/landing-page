@@ -1,89 +1,82 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { GraduationCap } from "lucide-react";
+import TeamCard, { TeamMember } from "./TeamCard";
 
-const TEAM = [
+const TEAM: TeamMember[] = [
   {
     name: "Hari Gupta",
     role: "Co-Founder & CEO",
-    focus: "Product strategy, operations, and summit client partnerships.",
+    badge: "CO-FOUNDER",
+    bio: "Product strategy, operations, and summit client partnerships.",
+    image: "/team/hari-gupta.jpg",
     initials: "HG",
-    badge: "Co-Founder",
+    objectPosition: "center 18%",
+    linkedin: "https://www.linkedin.com",
+    github: "https://github.com",
+    email: "mailto:getmyevent.work@gmail.com",
   },
   {
     name: "Pushpit Upadhyay",
     role: "Co-Founder & Tech Lead",
-    focus: "Platform architecture, mobile web runtime, and real-time event analytics.",
+    badge: "CO-FOUNDER",
+    bio: "Platform architecture, mobile web runtime, and real-time event analytics.",
+    image: "/team/pushpit-upadhyay.jpg",
     initials: "PU",
-    badge: "Co-Founder",
+    objectPosition: "center 22%",
+    linkedin: "https://www.linkedin.com",
+    github: "https://github.com",
+    email: "mailto:getmyevent.work@gmail.com",
   },
   {
     name: "Dr. Pratosh Bansal",
     role: "Director, IET DAVV",
-    focus: "Institutional mentorship, academic incubation, and high-concurrency architecture advice.",
+    badge: "MENTOR & ADVISOR",
+    bio: "Institutional mentorship, academic incubation, and high-concurrency architecture advice.",
+    image: "/team/pratosh-bansal.jpg",
     initials: "PB",
-    badge: "Mentor & Advisor",
-    icon: GraduationCap,
+    objectPosition: "center 20%",
+    linkedin: "https://www.linkedin.com",
+    email: "mailto:getmyevent.work@gmail.com",
   },
 ];
 
 export default function Team() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <section id="team" className="py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="team" className="scroll-mt-24 py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#EB3B38] mb-3">
+            THE TEAM
+          </div>
+
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] leading-[1.12]">
             The team behind{" "}
             <span className="text-[#EB3B38]">GetMyEvent.</span>
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-[#111827]/70">
-            Engineered with deep event technology expertise and mentored by premier
-            academic leadership at Institute of Engineering &amp; Technology (IET DAVV).
+            Built by people who&apos;ve run real summits.
           </p>
         </div>
 
-        {/* Team Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Responsive Layout:
+            - Mobile (<640px): horizontal snap carousel with peek of next card
+            - Tablet (640px-1023px): 2 columns with mentor centered below
+            - Desktop (1024px+): 3 columns with gap-8 in max-w-6xl container
+        */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-6 sm:pb-0 px-4 sm:px-0 -mx-4 sm:mx-0">
           {TEAM.map((member, idx) => (
-            <motion.div
+            <div
               key={member.name}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.5,
-                delay: shouldReduceMotion ? 0 : idx * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="p-6 sm:p-7 rounded-2xl bg-white border border-[#EAE7E0] shadow-[0_4px_20px_-2px_rgba(17,24,39,0.03)] hover:shadow-[0_10px_30px_-4px_rgba(17,24,39,0.08)] transition-all duration-300 flex flex-col justify-between"
+              className={`w-[78vw] max-w-[290px] shrink-0 snap-center ${
+                idx === 2
+                  ? "sm:col-span-2 sm:w-full sm:max-w-[340px] sm:mx-auto lg:col-span-1 lg:max-w-none"
+                  : "sm:w-auto sm:max-w-none"
+              }`}
             >
-              <div>
-                {/* Monogram Avatar & Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#111827] to-[#1E293B] text-white flex items-center justify-center font-bold text-base shadow-sm">
-                    {member.initials}
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#EB3B38]">
-                    {member.badge}
-                  </span>
-                </div>
-
-                <h3 className="text-lg sm:text-xl font-bold text-[#111827] tracking-tight">
-                  {member.name}
-                </h3>
-                <div className="text-xs sm:text-sm font-semibold text-[#EB3B38] mt-0.5 mb-2.5">
-                  {member.role}
-                </div>
-                <p className="text-xs sm:text-sm text-[#111827]/70 leading-relaxed">
-                  {member.focus}
-                </p>
-              </div>
-            </motion.div>
+              <TeamCard member={member} index={idx} className="h-full" />
+            </div>
           ))}
         </div>
       </div>
