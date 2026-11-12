@@ -50,32 +50,32 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm font-medium text-[#111827]/75">
               <li>
-                <Link href="/events" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="#events" className="hover:text-[#EB3B38] transition-colors">
                   Past, Live &amp; Future Events
                 </Link>
               </li>
               <li>
-                <Link href="/#features" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="#features" className="hover:text-[#EB3B38] transition-colors">
                   Overview &amp; Features
                 </Link>
               </li>
               <li>
-                <Link href="/#experiences" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="#experiences" className="hover:text-[#EB3B38] transition-colors">
                   Delegate Experience
                 </Link>
               </li>
               <li>
-                <Link href="/#experiences" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="#experiences" className="hover:text-[#EB3B38] transition-colors">
                   Exhibitor Lead Capture
                 </Link>
               </li>
               <li>
-                <Link href="/#experiences" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="#experiences" className="hover:text-[#EB3B38] transition-colors">
                   Organizer Console
                 </Link>
               </li>
               <li>
-                <Link href="/#casestudy" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="#casestudy" className="hover:text-[#EB3B38] transition-colors">
                   MP Semiconductor Summit
                 </Link>
               </li>

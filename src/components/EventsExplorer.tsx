@@ -57,7 +57,7 @@ const EVENTS: EventItem[] = [
     imageAlt:
       "Madhya Pradesh Semiconductor Summit 2026 plenary stage at Brilliant Convention Centre, Indore",
     ctaLabel: "View Case Study",
-    ctaHref: "/#casestudy",
+    ctaHref: "#casestudy",
     external: false,
   },
 ];
@@ -69,7 +69,10 @@ export default function EventsExplorer() {
   const activeEvents = EVENTS.filter((event) => event.status === activeTab);
 
   return (
-    <section className="pt-8 sm:pt-10 pb-20 md:pb-24 bg-[#FAF8F5]">
+    <section
+      id="events"
+      className="scroll-mt-20 py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Header + 3-Way Switcher (matching AudienceToggle layout) */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
@@ -203,7 +206,7 @@ export default function EventsExplorer() {
                     conference.
                   </p>
                   <Link
-                    href="/#contact"
+                    href="#contact"
                     className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111827] text-white text-sm font-semibold hover:bg-[#EB3B38] transition-colors group"
                   >
                     <span>Host your event</span>

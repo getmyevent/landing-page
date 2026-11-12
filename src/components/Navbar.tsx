@@ -3,20 +3,18 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "Platform", href: "/#features" },
-  { label: "Experience", href: "/#experiences" },
-  { label: "Events", href: "/events" },
-  { label: "Case Study", href: "/#casestudy" },
-  { label: "Team", href: "/#team" },
+  { label: "Platform", href: "#features" },
+  { label: "Experience", href: "#experiences" },
+  { label: "Events", href: "#events" },
+  { label: "Case Study", href: "#casestudy" },
+  { label: "Team", href: "#team" },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -74,26 +72,21 @@ export default function Navbar() {
               className="hidden lg:flex items-center gap-8 text-[15px] font-medium text-[#111827]/75"
               aria-label="Main Navigation"
             >
-              {NAV_LINKS.map((link) => {
-                const isActive = link.href === "/events" && pathname === "/events";
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className={`transition-colors hover:text-[#111827] tracking-tight relative py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EB3B38] rounded ${
-                      isActive ? "text-[#EB3B38] font-semibold" : ""
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="transition-colors hover:text-[#111827] tracking-tight relative py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EB3B38] rounded"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
             {/* Desktop Right CTA: Dark Pill */}
             <div className="hidden lg:flex items-center gap-4">
               <Link
-                href="/#contact"
+                href="#contact"
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#111827] text-white text-sm font-medium hover:bg-black transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EB3B38] group"
               >
                 <span>Let&apos;s talk</span>
@@ -104,7 +97,7 @@ export default function Navbar() {
             {/* Mobile / Tablet Nav Controls */}
             <div className="flex items-center gap-2 lg:hidden">
               <Link
-                href="/#contact"
+                href="#contact"
                 className="inline-flex items-center gap-1 px-4 py-2 min-h-[44px] rounded-full bg-[#111827] text-white text-xs font-medium active:scale-95 transition-transform"
               >
                 <span>Let&apos;s talk</span>
@@ -164,7 +157,7 @@ export default function Navbar() {
                 <span>The Digital Event Companion</span>
               </div>
               <Link
-                href="/#contact"
+                href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-[#111827] text-white text-base font-semibold min-h-[50px] shadow-md active:scale-[0.99] transition-transform"
               >
