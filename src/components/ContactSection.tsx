@@ -42,7 +42,7 @@ export default function ContactSection() {
     setErrorMsg(null);
     setSuccessMsg(null);
 
-    // Client-side validation
+    // Client-side validation: every field is mandatory
     if (!formData.name.trim() || formData.name.trim().length < 2) {
       setErrorMsg("Please enter your name (at least 2 characters).");
       return;
@@ -56,8 +56,20 @@ export default function ContactSection() {
       setErrorMsg("Please enter a valid email address.");
       return;
     }
+    if (!formData.eventType.trim()) {
+      setErrorMsg("Please select an event type.");
+      return;
+    }
+    if (!formData.expectedAttendees.trim()) {
+      setErrorMsg("Please specify the expected number of attendees.");
+      return;
+    }
+    if (!formData.eventDate.trim()) {
+      setErrorMsg("Please select an estimated event date.");
+      return;
+    }
     if (!formData.message.trim() || formData.message.trim().length < 5) {
-      setErrorMsg("Please provide a short description or requirements (min 5 characters).");
+      setErrorMsg("Please provide your event details or requirements (min 5 characters).");
       return;
     }
 
@@ -320,12 +332,13 @@ export default function ContactSection() {
                       htmlFor="eventDate"
                       className="block text-xs font-semibold uppercase tracking-wider text-[#111827]/70 mb-1.5"
                     >
-                      Estimated Event Date
+                      Estimated Event Date *
                     </label>
                     <input
                       type="date"
                       id="eventDate"
                       name="eventDate"
+                      required
                       value={formData.eventDate}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#EAE7E0] text-[#111827] text-sm focus:outline-none focus:ring-2 focus:ring-[#EB3B38] focus:bg-white transition-all min-h-[44px]"

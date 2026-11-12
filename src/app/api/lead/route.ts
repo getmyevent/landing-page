@@ -98,28 +98,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!message || typeof message !== "string" || message.trim().length < 5) {
+    if (!eventDate || typeof eventDate !== "string" || eventDate.trim().length === 0) {
       return NextResponse.json(
-        { error: "Please enter a brief message (minimum 5 characters)." },
+        { error: "Please select an estimated event date." },
         { status: 400 }
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const recipientEmail =
-      process.env.CONTACT_NOTIFICATION_EMAIL || "getmyevent.work@gmail.com";
-    const fromEmail =
-      process.env.RESEND_FROM_EMAIL ||
-      "GetMyEvent Inquiries <onboarding@resend.dev>";
-
-    if (!apiKey) {
-      console.error("RESEND_API_KEY is not configured; cannot forward inquiry.");
+    if (!message || typeof message !== "string" || message.trim().length < 5) {
       return NextResponse.json(
-        {
-          error:
-            "Email delivery is not configured yet. Please email getmyevent.work@gmail.com directly.",
-        },
-        { status: 503 }
+        { error: "Please enter a brief message (minimum 5 characters)." },
+        { status: 400 }
       );
     }
 
@@ -128,66 +117,114 @@ export async function POST(req: NextRequest) {
     const safeEmail = escapeHtml(email.trim());
     const safeEventType = escapeHtml(eventType.trim());
     const safeAttendees = escapeHtml(expectedAttendees.trim());
-    const safeDate = eventDate ? escapeHtml(String(eventDate).trim()) : "Not specified";
+    const safeDate = escapeHtml(String(eventDate).trim());
     const safeMessage = escapeHtml(message.trim());
 
-    const resend = new Resend(apiKey);
-    const { error: sendError } = await resend.emails.send({
-      from: fromEmail,
-      to: [recipientEmail],
-      replyTo: email.trim(),
-      subject: `New Event Inquiry: ${organization.trim()} (${eventType.trim()})`,
-      html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #111827; max-width: 600px; margin: 0 auto; padding: 24px;">
-          <div style="border-bottom: 2px solid #EB3B38; padding-bottom: 12px; margin-bottom: 20px;">
-            <h2 style="color: #EB3B38; margin: 0; font-size: 22px;">GetMyEvent — New Event Lead</h2>
-          </div>
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600; width: 160px; color: #4B5563;">Organizer Name:</td>
-              <td style="padding: 8px 0; font-weight: 500;">${safeName}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Organization:</td>
-              <td style="padding: 8px 0; font-weight: 500;">${safeOrg}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Email:</td>
-              <td style="padding: 8px 0; font-weight: 500;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Type:</td>
-              <td style="padding: 8px 0; font-weight: 500;">${safeEventType}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Expected Attendees:</td>
-              <td style="padding: 8px 0; font-weight: 500;">${safeAttendees}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Date:</td>
-              <td style="padding: 8px 0; font-weight: 500;">${safeDate}</td>
-            </tr>
-          </table>
-          <div style="background-color: #FAF8F5; border: 1px solid #EAE7E0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
-            <h4 style="margin: 0 0 8px 0; color: #111827; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Requirements:</h4>
-            <p style="margin: 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #374151;">${safeMessage}</p>
-          </div>
-          <p style="font-size: 12px; color: #9CA3AF; margin-top: 32px; border-top: 1px solid #E5E7EB; padding-top: 12px;">
-            Sent automatically from the GetMyEvent Landing Page (getmyevent.in)
-          </p>
-        </div>
-      `,
-    });
+    const recipientEmail =
+      process.env.CONTACT_NOTIFICATION_EMAIL || "getmyevent.work@gmail.com";
+    const apiKey = process.env.RESEND_API_KEY;
 
-    if (sendError) {
-      console.error("Resend delivery error:", sendError);
-      return NextResponse.json(
+    if (apiKey) {
+      // If Resend API key is provided, send via Resend
+      const fromEmail =
+        process.env.RESEND_FROM_EMAIL ||
+        "GetMyEvent Inquiries <onboarding@resend.dev>";
+      const resend = new Resend(apiKey);
+      const { error: sendError } = await resend.emails.send({
+        from: fromEmail,
+        to: [recipientEmail],
+        replyTo: safeEmail,
+        subject: `New Event Inquiry: ${safeOrg} (${safeEventType})`,
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #111827; max-width: 600px; margin: 0 auto; padding: 24px;">
+            <div style="border-bottom: 2px solid #EB3B38; padding-bottom: 12px; margin-bottom: 20px;">
+              <h2 style="color: #EB3B38; margin: 0; font-size: 22px;">GetMyEvent — New Event Lead</h2>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; width: 160px; color: #4B5563;">Organizer Name:</td>
+                <td style="padding: 8px 0; font-weight: 500;">${safeName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Organization:</td>
+                <td style="padding: 8px 0; font-weight: 500;">${safeOrg}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Email:</td>
+                <td style="padding: 8px 0; font-weight: 500;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Type:</td>
+                <td style="padding: 8px 0; font-weight: 500;">${safeEventType}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Expected Attendees:</td>
+                <td style="padding: 8px 0; font-weight: 500;">${safeAttendees}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Date:</td>
+                <td style="padding: 8px 0; font-weight: 500;">${safeDate}</td>
+              </tr>
+            </table>
+            <div style="background-color: #FAF8F5; border: 1px solid #EAE7E0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+              <h4 style="margin: 0 0 8px 0; color: #111827; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Requirements:</h4>
+              <p style="margin: 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #374151;">${safeMessage}</p>
+            </div>
+            <p style="font-size: 12px; color: #9CA3AF; margin-top: 32px; border-top: 1px solid #E5E7EB; padding-top: 12px;">
+              Sent automatically from the GetMyEvent Landing Page (getmyevent.in)
+            </p>
+          </div>
+        `,
+      });
+
+      if (sendError) {
+        console.error("Resend delivery error:", sendError);
+        return NextResponse.json(
+          {
+            error:
+              "Could not forward your inquiry right now. Please email getmyevent.work@gmail.com directly.",
+          },
+          { status: 502 }
+        );
+      }
+    } else {
+      // Forward via FormSubmit (zero Vercel dashboard / zero API key required)
+      const formSubmitRes = await fetch(
+        `https://formsubmit.co/ajax/${recipientEmail}`,
         {
-          error:
-            "Could not forward your inquiry right now. Please email getmyevent.work@gmail.com directly.",
-        },
-        { status: 502 }
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            _subject: `New Event Inquiry: ${safeOrg} (${safeEventType})`,
+            _replyto: safeEmail,
+            _template: "table",
+            _captcha: "false",
+            "Organizer Name": safeName,
+            "Organization / Summit": safeOrg,
+            "Email Address": safeEmail,
+            "Event Type": safeEventType,
+            "Expected Attendees": safeAttendees,
+            "Estimated Event Date": safeDate,
+            "Event Details & Requirements": safeMessage,
+          }),
+        }
       );
+
+      const formSubmitData = await formSubmitRes.json().catch(() => null);
+
+      if (!formSubmitRes.ok) {
+        console.error("FormSubmit delivery error:", formSubmitData);
+        return NextResponse.json(
+          {
+            error:
+              "Could not forward your inquiry right now. Please reach out to getmyevent.work@gmail.com directly.",
+          },
+          { status: 502 }
+        );
+      }
     }
 
     return NextResponse.json({
