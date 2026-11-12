@@ -7,6 +7,15 @@ const rateLimitMap = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 5; // max 5 requests per minute per IP
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const timestamps = rateLimitMap.get(ip) || [];
@@ -99,59 +108,85 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.RESEND_API_KEY;
     const recipientEmail =
       process.env.CONTACT_NOTIFICATION_EMAIL || "getmyevent.work@gmail.com";
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL ||
+      "GetMyEvent Inquiries <onboarding@resend.dev>";
 
-    if (apiKey) {
-      const resend = new Resend(apiKey);
-      await resend.emails.send({
-        from: "GetMyEvent Inquiries <notifications@getmyevent.in>",
-        to: [recipientEmail],
-        replyTo: email,
-        subject: `New Event Inquiry: ${organization} (${eventType})`,
-        html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #111827; max-width: 600px; margin: 0 auto; padding: 24px;">
-            <div style="border-bottom: 2px solid #EB3B38; padding-bottom: 12px; margin-bottom: 20px;">
-              <h2 style="color: #EB3B38; margin: 0; font-size: 22px;">GetMyEvent — New Event Lead</h2>
-            </div>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-              <tr>
-                <td style="padding: 8px 0; font-weight: 600; width: 160px; color: #4B5563;">Organizer Name:</td>
-                <td style="padding: 8px 0; font-weight: 500;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Organization:</td>
-                <td style="padding: 8px 0; font-weight: 500;">${organization}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Email:</td>
-                <td style="padding: 8px 0; font-weight: 500;"><a href="mailto:${email}">${email}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Type:</td>
-                <td style="padding: 8px 0; font-weight: 500;">${eventType}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Expected Attendees:</td>
-                <td style="padding: 8px 0; font-weight: 500;">${expectedAttendees}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Date:</td>
-                <td style="padding: 8px 0; font-weight: 500;">${eventDate || "Not specified"}</td>
-              </tr>
-            </table>
-            <div style="background-color: #FAF8F5; border: 1px solid #EAE7E0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
-              <h4 style="margin: 0 0 8px 0; color: #111827; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Requirements:</h4>
-              <p style="margin: 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #374151;">${message}</p>
-            </div>
-            <p style="font-size: 12px; color: #9CA3AF; margin-top: 32px; border-top: 1px solid #E5E7EB; padding-top: 12px;">
-              Sent automatically from the GetMyEvent Landing Page (getmyevent.in)
-            </p>
+    if (!apiKey) {
+      console.error("RESEND_API_KEY is not configured; cannot forward inquiry.");
+      return NextResponse.json(
+        {
+          error:
+            "Email delivery is not configured yet. Please email getmyevent.work@gmail.com directly.",
+        },
+        { status: 503 }
+      );
+    }
+
+    const safeName = escapeHtml(name.trim());
+    const safeOrg = escapeHtml(organization.trim());
+    const safeEmail = escapeHtml(email.trim());
+    const safeEventType = escapeHtml(eventType.trim());
+    const safeAttendees = escapeHtml(expectedAttendees.trim());
+    const safeDate = eventDate ? escapeHtml(String(eventDate).trim()) : "Not specified";
+    const safeMessage = escapeHtml(message.trim());
+
+    const resend = new Resend(apiKey);
+    const { error: sendError } = await resend.emails.send({
+      from: fromEmail,
+      to: [recipientEmail],
+      replyTo: email.trim(),
+      subject: `New Event Inquiry: ${organization.trim()} (${eventType.trim()})`,
+      html: `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #111827; max-width: 600px; margin: 0 auto; padding: 24px;">
+          <div style="border-bottom: 2px solid #EB3B38; padding-bottom: 12px; margin-bottom: 20px;">
+            <h2 style="color: #EB3B38; margin: 0; font-size: 22px;">GetMyEvent — New Event Lead</h2>
           </div>
-        `,
-      });
-    } else {
-      console.log(
-        "[DEV NOTE] Resend API key not configured in .env.local. Received lead:",
-        { name, organization, email, eventType, expectedAttendees, eventDate, message }
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600; width: 160px; color: #4B5563;">Organizer Name:</td>
+              <td style="padding: 8px 0; font-weight: 500;">${safeName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Organization:</td>
+              <td style="padding: 8px 0; font-weight: 500;">${safeOrg}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Email:</td>
+              <td style="padding: 8px 0; font-weight: 500;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Type:</td>
+              <td style="padding: 8px 0; font-weight: 500;">${safeEventType}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Expected Attendees:</td>
+              <td style="padding: 8px 0; font-weight: 500;">${safeAttendees}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600; color: #4B5563;">Event Date:</td>
+              <td style="padding: 8px 0; font-weight: 500;">${safeDate}</td>
+            </tr>
+          </table>
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE7E0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+            <h4 style="margin: 0 0 8px 0; color: #111827; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Requirements:</h4>
+            <p style="margin: 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #374151;">${safeMessage}</p>
+          </div>
+          <p style="font-size: 12px; color: #9CA3AF; margin-top: 32px; border-top: 1px solid #E5E7EB; padding-top: 12px;">
+            Sent automatically from the GetMyEvent Landing Page (getmyevent.in)
+          </p>
+        </div>
+      `,
+    });
+
+    if (sendError) {
+      console.error("Resend delivery error:", sendError);
+      return NextResponse.json(
+        {
+          error:
+            "Could not forward your inquiry right now. Please email getmyevent.work@gmail.com directly.",
+        },
+        { status: 502 }
       );
     }
 

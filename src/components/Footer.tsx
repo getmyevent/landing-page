@@ -15,13 +15,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#EAE7E0]/70">
           {/* Col 1: Logo & Tagline */}
           <div className="md:col-span-5 flex flex-col items-start">
-            <Link href="/" className="relative h-9 w-44 mb-4">
+            <Link href="/" className="relative h-11 sm:h-12 w-52 sm:w-56 mb-4">
               <Image
-                src="/brand/logo-gradient.png"
+                src="/brand/logo-original.png"
                 alt="GetMyEvent"
                 fill
-                className="object-contain object-left mix-blend-multiply"
-                sizes="176px"
+                className="object-contain object-left"
+                sizes="224px"
               />
             </Link>
 
@@ -50,27 +50,32 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm font-medium text-[#111827]/75">
               <li>
-                <Link href="#features" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="/events" className="hover:text-[#EB3B38] transition-colors">
+                  Past, Live &amp; Future Events
+                </Link>
+              </li>
+              <li>
+                <Link href="/#features" className="hover:text-[#EB3B38] transition-colors">
                   Overview &amp; Features
                 </Link>
               </li>
               <li>
-                <Link href="#experiences" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="/#experiences" className="hover:text-[#EB3B38] transition-colors">
                   Delegate Experience
                 </Link>
               </li>
               <li>
-                <Link href="#experiences" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="/#experiences" className="hover:text-[#EB3B38] transition-colors">
                   Exhibitor Lead Capture
                 </Link>
               </li>
               <li>
-                <Link href="#experiences" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="/#experiences" className="hover:text-[#EB3B38] transition-colors">
                   Organizer Console
                 </Link>
               </li>
               <li>
-                <Link href="#casestudy" className="hover:text-[#EB3B38] transition-colors">
+                <Link href="/#casestudy" className="hover:text-[#EB3B38] transition-colors">
                   MP Semiconductor Summit
                 </Link>
               </li>
@@ -93,61 +98,53 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Socials with crisp SVGs */}
-            <div className="flex items-center gap-3 mt-6">
+            {/* Socials with crisp SVGs (non-clickable for now) */}
+            <div className="flex items-center gap-3 mt-6" aria-label="Social channels coming soon">
               {/* LinkedIn */}
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 hover:text-[#EB3B38] hover:border-[#EB3B38]/40 transition-colors shadow-xs"
+              <span
+                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 shadow-xs cursor-default select-none"
+                title="LinkedIn (coming soon)"
                 aria-label="LinkedIn"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 0 0 1.66-1.66 1.66 1.66 0 1 0-1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z" />
                 </svg>
-              </a>
+              </span>
 
               {/* X / Twitter */}
-              <a
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 hover:text-[#EB3B38] hover:border-[#EB3B38]/40 transition-colors shadow-xs"
+              <span
+                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 shadow-xs cursor-default select-none"
+                title="X / Twitter (coming soon)"
                 aria-label="X / Twitter"
               >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
-              </a>
+              </span>
 
               {/* Instagram */}
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 hover:text-[#EB3B38] hover:border-[#EB3B38]/40 transition-colors shadow-xs"
+              <span
+                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 shadow-xs cursor-default select-none"
+                title="Instagram (coming soon)"
                 aria-label="Instagram"
               >
-                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-              </a>
+              </span>
 
               {/* GitHub */}
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 hover:text-[#EB3B38] hover:border-[#EB3B38]/40 transition-colors shadow-xs"
+              <span
+                className="w-9 h-9 rounded-full bg-white border border-[#EAE7E0] flex items-center justify-center text-[#111827]/70 shadow-xs cursor-default select-none"
+                title="GitHub (coming soon)"
                 aria-label="GitHub"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
                 </svg>
-              </a>
+              </span>
             </div>
           </div>
         </div>

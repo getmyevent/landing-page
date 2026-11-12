@@ -9,7 +9,7 @@ export interface TeamMember {
   name: string;
   role: string;
   badge: string;
-  bio: string;
+  bio?: string;
   image: string;
   initials: string;
   objectPosition?: string;
@@ -173,14 +173,20 @@ export default function TeamCard({ member, index, className = "" }: TeamCardProp
         </div>
 
         {/* Role in Coral */}
-        <div className="text-xs sm:text-sm font-semibold text-[#EB3B38] mt-0.5 mb-2.5">
+        <div
+          className={`text-xs sm:text-sm font-semibold text-[#EB3B38] mt-0.5 ${
+            member.bio ? "mb-2.5" : ""
+          }`}
+        >
           {member.role}
         </div>
 
         {/* Bio in Muted Gray */}
-        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed flex-grow">
-          {member.bio}
-        </p>
+        {member.bio && (
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed flex-grow">
+            {member.bio}
+          </p>
+        )}
       </div>
     </motion.div>
   );

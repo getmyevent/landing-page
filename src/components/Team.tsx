@@ -5,9 +5,8 @@ import TeamCard, { TeamMember } from "./TeamCard";
 const TEAM: TeamMember[] = [
   {
     name: "Hari Gupta",
-    role: "Co-Founder & CEO",
+    role: "Co-Founder",
     badge: "CO-FOUNDER",
-    bio: "Product strategy, operations, and summit client partnerships.",
     image: "/team/hari-gupta.jpg",
     initials: "HG",
     objectPosition: "center 18%",
@@ -17,9 +16,8 @@ const TEAM: TeamMember[] = [
   },
   {
     name: "Pushpit Upadhyay",
-    role: "Co-Founder & Tech Lead",
+    role: "Co-Founder",
     badge: "CO-FOUNDER",
-    bio: "Platform architecture, mobile web runtime, and real-time event analytics.",
     image: "/team/pushpit-upadhyay.jpg",
     initials: "PU",
     objectPosition: "center 22%",
@@ -31,7 +29,6 @@ const TEAM: TeamMember[] = [
     name: "Dr. Pratosh Bansal",
     role: "Director, IET DAVV",
     badge: "MENTOR & ADVISOR",
-    bio: "Institutional mentorship, academic incubation, and high-concurrency architecture advice.",
     image: "/team/pratosh-bansal.jpg",
     initials: "PB",
     objectPosition: "center 20%",

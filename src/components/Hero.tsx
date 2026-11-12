@@ -9,7 +9,7 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24 lg:pt-20 lg:pb-32 bg-[#FAF8F5]">
+    <section className="relative overflow-hidden pt-3 pb-14 md:pt-5 md:pb-20 lg:pt-6 lg:pb-24 bg-[#FAF8F5]">
       {/* Background subtle radial warm ambient glow */}
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full bg-gradient-to-tr from-[#EB3B38]/5 via-[#EB3B38]/[0.02] to-transparent blur-3xl pointer-events-none -z-10"

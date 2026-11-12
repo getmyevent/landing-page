@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     images: ["/brand/hero-mockup.jpeg"],
   },
   icons: {
-    icon: "/brand/logo-gradient.png",
-    apple: "/brand/logo-gradient.png",
+    icon: "/brand/icon-original.png",
+    apple: "/brand/icon-original.png",
   },
 };
 

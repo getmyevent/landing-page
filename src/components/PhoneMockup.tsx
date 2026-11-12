@@ -28,18 +28,21 @@ export default function PhoneMockup({
       </div>
 
       {/* Screen Container with clean gentle radius - zero cutting of text or corners */}
-      <div className="relative w-full aspect-[1/2.02] rounded-[20px] overflow-hidden bg-[#FAF8F5] shadow-[0_1px_3px_rgba(0,0,0,0.12)_inset] flex flex-col">
+      <div
+        className={`relative w-full rounded-[20px] overflow-hidden bg-[#FAF8F5] shadow-[0_1px_3px_rgba(0,0,0,0.12)_inset] flex flex-col ${
+          imageSrc ? "" : "aspect-[1/2.02]"
+        }`}
+      >
         {imageSrc ? (
-          <div className="relative w-full h-full">
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              className="object-contain object-top"
-              sizes="(max-width: 640px) 275px, (max-width: 768px) 300px, 325px"
-              priority
-            />
-          </div>
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={728}
+            height={1474}
+            className="w-full h-auto block"
+            sizes="(max-width: 640px) 275px, (max-width: 768px) 300px, 325px"
+            priority
+          />
         ) : (
           children
         )}
