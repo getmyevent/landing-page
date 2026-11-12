@@ -188,14 +188,19 @@ export async function POST(req: NextRequest) {
         );
       }
     } else {
-      // Forward via FormSubmit (zero Vercel dashboard / zero API key required)
+      // Forward via FormSubmit using your activated token (zero Vercel dashboard / zero API key required)
+      const formSubmitToken = "8db24b3101bc41167498d3ff508605c3";
       const formSubmitRes = await fetch(
-        `https://formsubmit.co/ajax/${recipientEmail}`,
+        `https://formsubmit.co/ajax/${formSubmitToken}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
+            Referer: "https://getmyevent.in/",
+            Origin: "https://getmyevent.in",
+            "User-Agent":
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
           },
           body: JSON.stringify({
             _subject: `New Event Inquiry: ${safeOrg} (${safeEventType})`,
@@ -213,9 +218,22 @@ export async function POST(req: NextRequest) {
         }
       );
 
-      const formSubmitData = await formSubmitRes.json().catch(() => null);
+      const formSubmitData = (await formSubmitRes.json().catch(() => null)) as {
+        success?: string | boolean;
+        message?: string;
+      } | null;
 
-      if (!formSubmitRes.ok) {
+      const isActivationPending =
+        typeof formSubmitData?.message === "string" &&
+        formSubmitData.message.toLowerCase().includes("activation");
+
+      const isSuccessful =
+        formSubmitRes.ok &&
+        (formSubmitData?.success === "true" ||
+          formSubmitData?.success === true ||
+          isActivationPending);
+
+      if (!isSuccessful) {
         console.error("FormSubmit delivery error:", formSubmitData);
         return NextResponse.json(
           {
