@@ -15,13 +15,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#EAE7E0]/70">
           {/* Col 1: Logo & Tagline */}
           <div className="md:col-span-5 flex flex-col items-start">
-            <Link href="/" className="relative h-11 sm:h-12 w-52 sm:w-56 mb-4">
+            <Link href="/" className="relative h-10 w-44 sm:w-48 mb-4">
               <Image
                 src="/brand/logo-original.png"
                 alt="GetMyEvent"
                 fill
                 className="object-contain object-left"
-                sizes="224px"
+                sizes="192px"
               />
             </Link>
 

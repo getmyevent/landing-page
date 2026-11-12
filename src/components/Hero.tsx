@@ -9,7 +9,7 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden pt-3 pb-14 md:pt-5 md:pb-20 lg:pt-6 lg:pb-24 bg-[#FAF8F5]">
+    <section className="relative overflow-hidden pt-7 pb-12 sm:pt-8 sm:pb-16 md:pt-8 md:pb-20 lg:pt-6 lg:pb-24 bg-[#FAF8F5]">
       {/* Background subtle radial warm ambient glow */}
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full bg-gradient-to-tr from-[#EB3B38]/5 via-[#EB3B38]/[0.02] to-transparent blur-3xl pointer-events-none -z-10"
@@ -17,7 +17,7 @@ export default function Hero() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 items-center">
           {/* Left Column: Copy & CTAs */}
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
@@ -26,22 +26,22 @@ export default function Hero() {
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-bold text-[#111827] tracking-[-0.035em] leading-[1.08] max-w-2xl">
+            <h1 className="text-[30px] sm:text-5xl md:text-6xl lg:text-[68px] font-bold text-[#111827] tracking-[-0.035em] leading-[1.1] sm:leading-[1.08] max-w-2xl">
               Bring every part of your event{" "}
               <span className="text-[#EB3B38] inline-block">closer together.</span>
             </h1>
 
             {/* Subtext */}
-            <p className="mt-6 text-lg sm:text-xl text-[#111827]/75 font-normal leading-relaxed max-w-xl">
+            <p className="mt-4 sm:mt-6 text-[15px] sm:text-xl text-[#111827]/75 font-normal leading-relaxed max-w-md sm:max-w-xl">
               One mobile web app for agendas, speakers, exhibitors and venue
               maps. No downloads, no passwords, no OTPs.
             </p>
 
             {/* Primary & Secondary CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-3.5 w-full sm:w-auto max-w-xs sm:max-w-none">
               <Link
                 href="#features"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#EB3B38] text-white text-base font-semibold hover:bg-[#D42B28] transition-all duration-200 shadow-[0_4px_16px_rgba(235,59,56,0.28)] hover:shadow-[0_6px_22px_rgba(235,59,56,0.38)] active:scale-[0.98] min-h-[48px] group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#EB3B38] text-white text-sm sm:text-base font-semibold hover:bg-[#D42B28] transition-all duration-200 shadow-[0_4px_16px_rgba(235,59,56,0.28)] hover:shadow-[0_6px_22px_rgba(235,59,56,0.38)] active:scale-[0.98] min-h-[44px] sm:min-h-[48px] group"
               >
                 <span>Explore the platform</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -49,7 +49,7 @@ export default function Hero() {
 
               <Link
                 href="#casestudy"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#111827] border border-[#EAE7E0] text-base font-medium hover:border-[#111827]/30 hover:bg-[#FAF8F5] transition-all duration-200 shadow-sm min-h-[48px] active:scale-[0.98] group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 sm:py-3.5 rounded-full bg-white text-[#111827] border border-[#EAE7E0] text-sm sm:text-base font-medium hover:border-[#111827]/30 hover:bg-[#FAF8F5] transition-all duration-200 shadow-sm min-h-[44px] sm:min-h-[48px] active:scale-[0.98] group"
               >
                 <span>See it in action</span>
                 <ArrowUpRight className="w-4 h-4 text-[#111827]/60 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -57,13 +57,13 @@ export default function Hero() {
             </div>
 
             {/* Bottom Tagline / Categories */}
-            <div className="mt-10 pt-6 border-t border-[#EAE7E0]/60 flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-medium text-[#111827]/50">
-              <span className="text-[#111827]/70 font-semibold">Made for:</span>
-              <span className="tracking-wide">CONFERENCES</span>
+            <div className="mt-7 sm:mt-10 pt-5 sm:pt-6 border-t border-[#EAE7E0]/60 flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1 text-[11px] sm:text-sm font-medium text-[#111827]/50">
+              <span className="text-[#111827]/70 font-semibold whitespace-nowrap">Made for:</span>
+              <span className="tracking-wide whitespace-nowrap">CONFERENCES</span>
               <span className="text-[#EB3B38]">•</span>
-              <span className="tracking-wide">SUMMITS</span>
+              <span className="tracking-wide whitespace-nowrap">SUMMITS</span>
               <span className="text-[#EB3B38]">•</span>
-              <span className="tracking-wide">GATHERINGS</span>
+              <span className="tracking-wide whitespace-nowrap">GATHERINGS</span>
             </div>
           </motion.div>
 

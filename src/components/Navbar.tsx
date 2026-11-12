@@ -55,14 +55,14 @@ export default function Navbar() {
               className="flex items-center gap-2 group transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EB3B38] rounded-md"
               aria-label="GetMyEvent Home"
             >
-              <div className="relative h-11 sm:h-12 md:h-14 w-48 sm:w-52 md:w-60">
+              <div className="relative h-8 sm:h-9 md:h-10 w-32 sm:w-44 md:w-48 shrink-0">
                 <Image
                   src="/brand/logo-original.png"
                   alt="GetMyEvent Logo"
                   fill
                   priority
                   className="object-contain object-left"
-                  sizes="(max-width: 768px) 208px, 240px"
+                  sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 192px"
                 />
               </div>
             </Link>
@@ -95,13 +95,13 @@ export default function Navbar() {
             </div>
 
             {/* Mobile / Tablet Nav Controls */}
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-1 px-4 py-2 min-h-[44px] rounded-full bg-[#111827] text-white text-xs font-medium active:scale-95 transition-transform"
+                className="inline-flex items-center gap-1 px-3.5 py-2 min-h-[38px] sm:min-h-[44px] rounded-full bg-[#111827] text-white text-xs font-medium whitespace-nowrap active:scale-95 transition-transform"
               >
                 <span>Let&apos;s talk</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
               </Link>
 
               <button

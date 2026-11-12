@@ -150,7 +150,7 @@ export default function AudienceToggle() {
     AUDIENCES.find((a) => a.id === activeTab) || AUDIENCES[0];
 
   return (
-    <section id="experiences" className="py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60">
+    <section id="experiences" className="scroll-mt-20 py-12 md:py-16 bg-[#FAF8F5] border-t border-[#EAE7E0]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -166,7 +166,7 @@ export default function AudienceToggle() {
           </p>
 
           {/* 3-Way Switcher: High Contrast Active Tab */}
-          <div className="mt-8 inline-flex p-1.5 rounded-full bg-white border border-[#EAE7E0] shadow-sm">
+          <div className="mt-8 inline-flex max-w-full p-1 sm:p-1.5 rounded-full bg-white border border-[#EAE7E0] shadow-sm">
             {AUDIENCES.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -174,7 +174,7 @@ export default function AudienceToggle() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 min-h-[44px] flex items-center justify-center cursor-pointer ${
+                  className={`px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 min-h-[40px] sm:min-h-[44px] flex items-center justify-center cursor-pointer ${
                     isActive
                       ? "bg-[#111827] text-white shadow-md font-bold"
                       : "text-[#111827]/70 hover:text-[#111827] hover:bg-black/5"

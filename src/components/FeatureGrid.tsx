@@ -59,7 +59,7 @@ export default function FeatureGrid() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="features" className="py-20 md:py-28 bg-[#FAF8F5]">
+    <section id="features" className="scroll-mt-20 py-12 md:py-16 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-14 md:mb-20">

@@ -101,7 +101,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60">
+    <section id="contact" className="scroll-mt-20 py-12 md:py-16 bg-[#FAF8F5] border-t border-[#EAE7E0]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
           {/* Left Column: Copy & Value Proposition */}

@@ -39,14 +39,10 @@ const TEAM: TeamMember[] = [
 
 export default function Team() {
   return (
-    <section id="team" className="scroll-mt-24 py-20 md:py-28 bg-[#FAF8F5] border-t border-[#EAE7E0]/60 overflow-hidden">
+    <section id="team" className="scroll-mt-20 py-12 md:py-16 bg-[#FAF8F5] border-t border-[#EAE7E0]/60 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#EB3B38] mb-3">
-            THE TEAM
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] leading-[1.12]">
             The team behind{" "}
             <span className="text-[#EB3B38]">GetMyEvent.</span>
